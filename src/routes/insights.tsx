@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Calendar, User, ArrowRight, ImageIcon } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { FinalCTA } from "@/components/site/FinalCTA";
+import { z } from "zod";
 import {
   sanityEnabled,
   sanityClient,
@@ -11,16 +12,22 @@ import {
   type SanityArticle,
 } from "@/lib/sanity";
 
+const insightsSearchSchema = z.object({
+  category: z.string().optional(),
+  articleId: z.string().optional(),
+});
+
 export const Route = createFileRoute("/insights")({
+  validateSearch: (search) => insightsSearchSchema.parse(search),
   head: () => ({
     meta: [
-      { title: "Insights — Magnivor Global Solutions" },
+      { title: "Insights & Media — Magnivor Global Solutions" },
       {
         name: "description",
         content:
           "Strategic perspectives on economic trends, taxation, financial strategy and corporate governance.",
       },
-      { property: "og:title", content: "Magnivor Insights" },
+      { property: "og:title", content: "Insights & Media — Magnivor Global Solutions" },
       {
         property: "og:description",
         content:
@@ -134,9 +141,33 @@ function mapSanity(a: SanityArticle): Post {
 }
 
 function InsightsPage() {
+  const search = Route.useSearch();
   const [active, setActive] = useState<Category>("All");
   const [posts, setPosts] = useState<Post[]>(FALLBACK);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (search.category) {
+      setActive(search.category as Category);
+    }
+  }, [search.category]);
+
+  useEffect(() => {
+    if (search.articleId && posts.length > 0) {
+      const timer = setTimeout(() => {
+        const el = document.getElementById(search.articleId!);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+          el.classList.add("ring-2", "ring-gold", "scale-[1.02]", "transition-all", "duration-500");
+          const clearTimer = setTimeout(() => {
+            el.classList.remove("ring-2", "ring-gold", "scale-[1.02]");
+          }, 3000);
+          return () => clearTimeout(clearTimer);
+        }
+      }, 400);
+      return () => clearTimeout(timer);
+    }
+  }, [search.articleId, posts, active]);
 
   useEffect(() => {
     if (!sanityEnabled || !sanityClient) return;
@@ -163,7 +194,7 @@ function InsightsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Insights"
+        eyebrow="Insights & Media"
         title={
           <>
             Strategic perspectives on{" "}
@@ -173,7 +204,7 @@ function InsightsPage() {
         description="Research-grade thinking from Magnivor advisors — translated into practical guidance for leadership teams."
       />
 
-      <section className="relative py-16 md:py-20">
+      <section className="relative py-16 md:py-20 bg-white">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-32 top-10 h-[360px] w-[360px] rounded-full bg-emerald/10 blur-[120px]"
@@ -216,7 +247,8 @@ function InsightsPage() {
             {filtered.map((p) => (
               <article
                 key={p._id}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/40 bg-white/55 backdrop-blur-xl transition hover:-translate-y-1 hover:border-emerald/40 hover:shadow-elegant"
+                id={p._id}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white transition hover:-translate-y-1 hover:border-emerald/40 hover:shadow-elegant"
               >
                 <div className="relative aspect-[16/9] overflow-hidden border-b border-white/40">
                   {p.image ? (
@@ -250,7 +282,7 @@ function InsightsPage() {
                   <h3 className="text-lg font-semibold leading-snug text-navy group-hover:text-emerald">
                     {p.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-sm text-muted-foreground">{p.excerpt}</p>
+                  <p className="mt-3 flex-1 text-sm text-navy/80">{p.excerpt}</p>
 
                   <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-4 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1.5">
@@ -284,7 +316,7 @@ function InsightsPage() {
           <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-emerald">
             Subscribe
           </span>
-          <h2 className="mt-3 text-3xl font-bold text-navy md:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl">
             Insight delivered to your inbox
           </h2>
           <p className="mt-3 text-muted-foreground">

@@ -14,7 +14,7 @@ export function FinalCTA() {
         loading="lazy"
         className="absolute inset-0 -z-20 h-full w-full object-cover"
       />
-      <div aria-hidden className="absolute inset-0 -z-10" style={{ backgroundColor: "rgba(11,31,59,0.82)" }} />
+      <div aria-hidden className="absolute inset-0 -z-10" style={{ backgroundColor: "rgba(2, 16, 36, 0.82)" }} />
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] p-10 shadow-elegant backdrop-blur-md md:p-16">
           <div

@@ -16,13 +16,13 @@ export function ParticlesBackground() {
       detectRetina: true,
       particles: {
         number: { value: 70, density: { enable: true, width: 1200, height: 800 } },
-        color: { value: ["#C8A24A", "#0E6B5B"] },
+        color: { value: ["#C1E8FF", "#5483B3"] },
         opacity: { value: 0.35 },
         size: { value: { min: 1, max: 2.5 } },
         links: {
           enable: true,
           distance: 150,
-          color: "#C8A24A",
+          color: "#5483B3",
           opacity: 0.18,
           width: 1,
         },

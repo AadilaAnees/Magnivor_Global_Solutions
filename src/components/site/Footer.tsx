@@ -60,10 +60,10 @@ export function Footer() {
               Company
             </h4>
             <ul className="mt-4 space-y-2.5 text-sm">
-              <li><Link to="/about" className="text-white/70 hover:text-white">About</Link></li>
-              <li><Link to="/team" className="text-white/70 hover:text-white">Team</Link></li>
-              <li><Link to="/insights" className="text-white/70 hover:text-white">Insights</Link></li>
-              <li><Link to="/contact" className="text-white/70 hover:text-white">Contact</Link></li>
+              <li><Link to="/about" className="text-white/70 hover:text-white">Who we are</Link></li>
+              <li><Link to="/about" hash="team" className="text-white/70 hover:text-white">Team</Link></li>
+              <li><Link to="/insights" className="text-white/70 hover:text-white">Insights & Media</Link></li>
+              <li><Link to="/contact" className="text-white/70 hover:text-white">Contact us</Link></li>
             </ul>
           </div>
 

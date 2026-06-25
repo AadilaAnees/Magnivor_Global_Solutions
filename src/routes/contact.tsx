@@ -10,13 +10,13 @@ const MESSAGE_MAX = 400;
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — Magnivor Global Solutions" },
+      { title: "Contact us — Magnivor Global Solutions" },
       {
         name: "description",
         content:
           "Speak with a Magnivor advisor. Email, phone, WhatsApp or contact form — we respond within one business day.",
       },
-      { property: "og:title", content: "Contact Magnivor" },
+      { property: "og:title", content: "Contact us — Magnivor Global Solutions" },
       {
         property: "og:description",
         content: "Let's build your financial future — get in touch today.",
@@ -62,7 +62,7 @@ function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact"
+        eyebrow="Contact us"
         title={
           <>
             Let's build your{" "}
@@ -79,7 +79,7 @@ function ContactPage() {
             <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-emerald">
               Direct Contact
             </span>
-            <h2 className="mt-3 text-2xl font-bold text-navy md:text-3xl">
+            <h2 className="mt-3 text-2xl font-bold text-white md:text-3xl">
               Talk to an advisor
             </h2>
             <p className="mt-3 text-muted-foreground">
@@ -93,7 +93,7 @@ function ContactPage() {
                 </span>
                 <div>
                   <p className="text-xs uppercase tracking-wider text-muted-foreground">Email</p>
-                  <a href={`mailto:${SITE.email}`} className="text-sm font-semibold text-navy hover:text-emerald break-all">
+                  <a href={`mailto:${SITE.email}`} className="text-sm font-semibold text-white hover:text-emerald break-all">
                     {SITE.email}
                   </a>
                 </div>
@@ -104,7 +104,7 @@ function ContactPage() {
                 </span>
                 <div>
                   <p className="text-xs uppercase tracking-wider text-muted-foreground">Phone</p>
-                  <a href={`tel:${SITE.phoneTel}`} className="text-sm font-semibold text-navy hover:text-emerald">
+                  <a href={`tel:${SITE.phoneTel}`} className="text-sm font-semibold text-white hover:text-emerald">
                     {SITE.phoneDisplay}
                   </a>
                 </div>
@@ -115,7 +115,7 @@ function ContactPage() {
                 </span>
                 <div>
                   <p className="text-xs uppercase tracking-wider text-muted-foreground">Location</p>
-                  <p className="text-sm font-semibold text-navy">Sri Lanka · Global Remote Advisory</p>
+                  <p className="text-sm font-semibold text-white">Sri Lanka · Global Remote Advisory</p>
                   <p className="mt-1 text-xs text-muted-foreground">{SITE.address}</p>
                 </div>
               </li>
@@ -125,7 +125,7 @@ function ContactPage() {
                 </span>
                 <div>
                   <p className="text-xs uppercase tracking-wider text-muted-foreground">Hours</p>
-                  <p className="text-sm font-semibold text-navy">Mon–Fri · 9:00–18:00 (IST)</p>
+                  <p className="text-sm font-semibold text-white">Mon–Fri · 9:00–18:00 (IST)</p>
                 </div>
               </li>
             </ul>
@@ -135,7 +135,7 @@ function ContactPage() {
               <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-emerald">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald" /> Instant Response Enabled
               </span>
-              <h3 className="mt-3 text-xl font-bold text-navy">Prefer instant response?</h3>
+              <h3 className="mt-3 text-xl font-bold text-white">Prefer instant response?</h3>
               <p className="mt-2 text-sm text-foreground/80">
                 Connect instantly with our advisory team via WhatsApp for faster consultation support.
               </p>
@@ -171,13 +171,13 @@ function ContactPage() {
                   name="service"
                   required
                   defaultValue=""
-                  className="w-full rounded-md border border-border bg-white px-4 py-3 text-sm outline-none focus:border-emerald"
+                  className="w-full rounded-md border border-border bg-white px-4 py-3 text-sm text-navy outline-none focus:border-emerald"
                 >
-                  <option value="" disabled>Select a service…</option>
+                  <option value="" disabled className="text-navy">Select a service…</option>
                   {SERVICES.map((s) => (
-                    <option key={s.slug} value={s.title}>{s.title}</option>
+                    <option key={s.slug} value={s.title} className="text-navy">{s.title}</option>
                   ))}
-                  <option value="Other">Other / not sure yet</option>
+                  <option value="Other" className="text-navy">Other / not sure yet</option>
                 </select>
               </div>
               <div>
@@ -206,13 +206,13 @@ function ContactPage() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Tell us about your business and what you'd like help with…"
-                  className="w-full resize-none rounded-md border border-border bg-white px-4 py-3 text-sm outline-none focus:border-emerald"
+                  className="w-full resize-none rounded-md border border-border bg-white px-4 py-3 text-sm text-navy outline-none focus:border-emerald"
                 />
               </div>
               <button
                 type="submit"
                 disabled={status === "sending"}
-                className="mt-2 rounded-md gradient-emerald px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:opacity-90 disabled:opacity-60"
+                className="mt-2 rounded-md bg-emerald hover:bg-navy px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === "sending" ? "Sending…" : "Send Inquiry"}
               </button>
@@ -257,7 +257,7 @@ function Field({
         name={name}
         type={type}
         required={required}
-        className="w-full rounded-md border border-border bg-white px-4 py-3 text-sm outline-none focus:border-emerald"
+        className="w-full rounded-md border border-border bg-white px-4 py-3 text-sm text-navy outline-none focus:border-emerald"
       />
     </div>
   );

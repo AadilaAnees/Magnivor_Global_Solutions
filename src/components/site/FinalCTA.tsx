@@ -24,31 +24,30 @@ export function FinalCTA() {
           <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
             <div>
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
-                Let's Talk
+                Let's Connect
               </span>
               <h2 className="mt-3 text-3xl font-bold leading-tight text-white md:text-4xl">
-                Ready to transform your{" "}
-                <span className="text-gradient-gold">financial strategy?</span>
+                Ready to shape your business &{" "}
+                <span className="text-gradient-gold">financial future together?</span>
               </h2>
               <p className="mt-4 max-w-xl text-white/75">
-                Speak with a Magnivor advisor about accounting, tax, CFO advisory
-                or outsourcing — wherever you are.
+                Let's discuss how we can help you achieve your goals with confidence from whereever you are!
               </p>
             </div>
             <div className="flex flex-col gap-3 md:items-end">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-md gradient-emerald px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition hover:opacity-90"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#EAB308] text-[#021024] px-7 py-3.5 text-sm font-bold shadow-elegant transition hover:brightness-110"
               >
-                Contact Our Experts <ArrowRight className="h-4 w-4" />
+                Book a Free Consultation <ArrowRight className="h-4 w-4" />
               </Link>
               <a
                 href={waLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10"
+                className="inline-flex items-center justify-center gap-2 rounded-md bg-[#25D366] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#20bd5c]"
               >
-                <WhatsAppIcon className="h-4 w-4" /> Chat on WhatsApp
+                <WhatsAppIcon className="h-4 w-4" /> Chat with us on WhatsApp
               </a>
             </div>
           </div>

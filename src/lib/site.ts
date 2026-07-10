@@ -1,16 +1,20 @@
-// ⬇️  EDIT HERE to change the contact email / phone used across the site
+import imgAccounting from "@/assets/accounting.png";
+import imgTax from "@/assets/tax.png";
+import imgAdvisory from "@/assets/advisory.png";
+import imgOutsourcing from "@/assets/outsourcing.png";
+import imgConsulting from "@/assets/consulting.png";
+import imgRisk from "@/assets/risk.png";
 // (Contact page "Send Inquiry" form delivery, footer, mailto/tel links).
-// Set `formspreeId` to your Formspree form ID so submissions land in your inbox.
 export const SITE = {
   name: "Magnivor Global Solutions",
   shortName: "Magnivor",
-  email: "aadhilaanees@gmail.com", // ← change to your Gmail for testing
-  phoneDisplay: "+94 78 768 4244", // ← change phone (display format)
-  phoneTel: "+94787684244", // ← change phone (tel: link, digits only)
-  whatsappNumber: "94787684244", // international, no +
+  email: "magnivorglobalsolutions@gmail.com",
+  phoneDisplay: "+94 78 768 4244", 
+  phoneTel: "+94787684244", 
+  whatsappNumber: "94787684244",
   whatsappMessage: "Hello Magnivor Global Solutions, I would like to request a consultation.",
   address: "27, 5 Upananda Mawatha, Dehiwala-Mount Lavinia 10350, Sri Lanka",
-  formspreeId: "maqzzbeq", // ← create a free form at https://formspree.io and paste its ID here
+  formspreeId: "maqzzbeq",
   social: {
     facebook: "https://facebook.com/magnivorglobalsolutions",
     instagram: "https://instagram.com/magnivorglobalsolutions",
@@ -24,16 +28,22 @@ export const waLink = (msg = SITE.whatsappMessage) =>
 export const SERVICES = [
   {
     slug: "accounting-bookkeeping",
-    title: "Accounting & Bookkeeping",
+    title: "Accounting",
     tag: "Core",
-    short: "Financial reporting, reconciliations and IFRS-aligned books.",
+    short: "Turning Financial Information into Strategic Business Intelligence.",
     overview:
       "End-to-end accounting and bookkeeping that gives leadership a clean, auditable view of performance — every month, every quarter, every year.",
     scope: [
-      "Day-to-day bookkeeping and ledger management",
-      "Bank, payable and receivable reconciliations",
-      "Monthly management accounts",
-      "Year-end financial statements (IFRS / SLFRS)",
+      "Bookkeeping & Financial Accounting",
+      "Financial Reporting",
+      "Management Reporting",
+      "Budgeting & Forecasting",
+      "Financial Planning & Analysis (FP&A)",
+      "Virtual CFO Services",
+      "Payroll Services",
+      "Finance & Accounting Outsourcing",
+      "Accounting Systems Support",
+      "Other Related Accounting & Finance Services"
     ],
     deliverables: [
       "Monthly P&L, balance sheet and cash flow",
@@ -41,45 +51,65 @@ export const SERVICES = [
       "Audit-ready year-end financials",
     ],
     audience: "SMEs, startups and international firms needing reliable books.",
-    benefits: ["Clean, audit-ready records", "Faster, smarter decisions", "Compliance built in"],
+    benefits: [
+      "Audit-ready financials",
+      "Data-driven decision making",
+      "Streamlined tax compliance"
+    ],
+    image: imgAccounting,
   },
   {
     slug: "taxation-compliance",
-    title: "Taxation & Compliance",
+    title: "Tax",
     tag: "Advisory",
-    short: "Tax planning, VAT and cross-border compliance advisory.",
+    short: "Helping You Navigate Tax with Confidence.",
     overview:
       "Strategic tax structuring and compliance support across Sri Lankan and international jurisdictions, so you stay efficient and fully compliant.",
     scope: [
-      "Corporate and personal tax planning",
-      "VAT, WHT and indirect tax compliance",
-      "Cross-border and transfer pricing advisory",
-      "Tax authority correspondence and audits",
+      "Corporate Tax Advisory",
+      "Tax Planning & Strategy",
+      "Tax Compliance",
+      "VAT / GST Advisory",
+      "International Tax Advisory",
+      "Transfer Pricing",
+      "Tax Due Diligence",
+      "Tax Audit Support",
+      "Tax Risk Management",
+      "Other Related Tax Services"
     ],
     deliverables: ["Tax filings and computations", "Tax position memos", "Cross-border structuring advice"],
     audience: "Companies operating across multiple jurisdictions.",
     benefits: ["Lower effective tax burden", "Reduced compliance risk", "Confidence in audits and reviews"],
+    image: imgTax,
   },
   {
     slug: "virtual-cfo",
-    title: "Virtual CFO Services",
+    title: "Business Consulting",
     tag: "Strategic",
-    short: "Forecasting, KPIs and CFO-level financial leadership on demand.",
+    short: "Empowering Better Businesses.",
     overview:
       "Plug a fractional CFO into your business — strategy, forecasting and board-grade reporting without the cost of a full-time hire.",
     scope: [
-      "Budgeting and rolling forecasts",
-      "KPI dashboards and management reporting",
-      "Cash flow and working capital strategy",
-      "Investor and board reporting",
+      "Empowering Better Businesses",
+      "Business Strategy",
+      "Startup & Growth Advisory",
+      "Business Process Outsourcing (BPO)",
+      "Business Process Re-engineering",
+      "Corporate Secretarial Services",
+      "HR Consulting",
+      "Corporate Training",
+      "Digital Transformation Advisory",
+      "Market Entry Advisory",
+      "Other Related Business Consulting Services"
     ],
     deliverables: ["Monthly CFO report", "12-month rolling forecast", "Board / investor pack"],
     audience: "Growth-stage businesses and SMEs without an in-house CFO.",
     benefits: ["Strategic clarity at the top", "Investor-ready numbers", "Better capital decisions"],
+    image: imgConsulting,
   },
   {
     slug: "bpo-services",
-    title: "Business Process Outsourcing",
+    title: "Outsourcing",
     tag: "Outsourcing",
     short: "Outsourced finance operations, payroll and reporting.",
     overview: "Offload finance operations to a dedicated Magnivor team — scalable, secure and SLA-driven.",
@@ -87,39 +117,54 @@ export const SERVICES = [
     deliverables: ["Operational finance run by Magnivor", "Monthly SLA reports", "Process documentation"],
     audience: "International firms scaling lean back-office operations.",
     benefits: ["Lower operating cost", "Predictable SLAs", "Senior oversight, junior execution"],
+    image: imgOutsourcing,
   },
   {
     slug: "corporate-training",
-    title: "Corporate Training",
+    title: "Advisory",
     tag: "Capability",
-    short: "IFRS, governance and financial modeling workshops.",
+    short: "Strategic Solutions for Sustainable Growth.",
     overview: "Practical, instructor-led training that lifts the capability of finance teams and business leaders.",
     scope: [
-      "IFRS / SLFRS application",
-      "Financial modeling and analysis",
-      "Corporate governance",
-      "Bespoke in-house programs",
+      "Business Advisory",
+      "Financial Advisory",
+      "IFRS Advisory",
+      "Finance Transformation",
+      "Business Valuation",
+      "Business Process Improvement",
+      "Performance Improvement",
+      "ESG & Sustainability Advisory",
+      "Economic Intelligence (Market & Strategic Insights)",
+      "Other Related Advisory Services"
     ],
     deliverables: ["Workshop materials", "Live or recorded sessions", "Certificates of completion"],
     audience: "Finance teams, leadership groups and professional bodies.",
     benefits: ["Stronger in-house capability", "Up-to-date standards know-how", "Better team retention"],
+    image: imgAdvisory
   },
   {
     slug: "economic-intelligence",
-    title: "Economic Intelligence",
+    title: "Risk & Governance",
     tag: "Research",
-    short: "Macroeconomic research and forecasting for decision makers.",
+    short: "Strengthening Governance. Managing Risk. Building Trust.",
     overview:
       "Research-grade insight into macro trends, sectors and policy — translated into actionable guidance for your strategy.",
     scope: [
-      "Macroeconomic monitoring",
-      "Sector and market briefs",
-      "Policy and regulatory analysis",
-      "Custom research engagements",
+      "Strengthening Governance. Managing Risk. Building Trust.",
+      "Internal Audit",
+      "Enterprise Risk Management (ERM)",
+      "Corporate Governance Advisory",
+      "Internal Controls & Compliance Reviews",
+      "SOQM Consulting",
+      "Fraud Risk Assessments",
+      "Business Continuity Planning",
+      "Governance Framework Development",
+      "Other Related Risk & Governance Services"
     ],
     deliverables: ["Quarterly intelligence briefs", "Custom research reports", "Executive briefings"],
     audience: "Boards, investors and policy-sensitive businesses.",
     benefits: ["Foresight into market shifts", "Sharper strategic positioning", "Evidence-based decisions"],
+    image: imgRisk,
   },
 ];
 

@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, Check, MessageCircle } from "lucide-react";
 import { SERVICES, waLink } from "@/lib/site";
 import { PageHeader } from "@/components/site/PageHeader";
+import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
@@ -43,13 +44,13 @@ function ServiceDetailPage() {
         description={s.short}
       />
 
-      <section className="py-20 md:py-28">
+      <section className="pt-8 pb-20 md:pt-12 md:pb-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.4fr_1fr] lg:px-10">
           <div>
-            <h2 className="text-2xl font-bold text-navy md:text-3xl">Overview</h2>
+            <h2 className="text-2xl font-bold text-white md:text-3xl">Overview</h2>
             <p className="mt-4 text-muted-foreground">{s.overview}</p>
 
-            <h3 className="mt-12 text-xl font-bold text-navy">Scope of work</h3>
+            <h3 className="mt-12 text-xl font-bold text-white">Scope of work</h3>
             <ul className="mt-5 space-y-3">
               {s.scope.map((x: string) => (
                 <li key={x} className="flex items-start gap-3 text-sm text-foreground/85">
@@ -61,12 +62,12 @@ function ServiceDetailPage() {
               ))}
             </ul>
 
-            <h3 className="mt-12 text-xl font-bold text-navy">Deliverables</h3>
+            <h3 className="mt-12 text-xl font-bold text-white">Deliverables</h3>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">
               {s.deliverables.map((d: string) => (
                 <li
                   key={d}
-                  className="rounded-lg border border-border bg-white p-4 text-sm text-foreground/85"
+                  className="rounded-lg border border-border bg-white p-4 text-navy text-foreground/85"
                 >
                   {d}
                 </li>
@@ -76,12 +77,12 @@ function ServiceDetailPage() {
             <h3 className="mt-12 text-xl font-bold text-navy">Who it's for</h3>
             <p className="mt-3 text-muted-foreground">{s.audience}</p>
 
-            <h3 className="mt-12 text-xl font-bold text-navy">Benefits</h3>
+            <h3 className="mt-12 text-xl font-bold text-white">Benefits</h3>
             <ul className="mt-5 grid gap-3 sm:grid-cols-3">
               {s.benefits.map((b: string) => (
                 <li
                   key={b}
-                  className="rounded-lg border border-emerald/20 bg-emerald/5 p-4 text-sm font-semibold text-emerald-dark"
+                  className="rounded-lg border border-emerald/20 bg-emerald/5 p-4 text-sm font-semibold text-white"
                 >
                   {b}
                 </li>
@@ -92,7 +93,7 @@ function ServiceDetailPage() {
           {/* Sidebar */}
           <aside className="lg:sticky lg:top-28 lg:self-start">
             <div className="rounded-2xl border border-border bg-white p-7 shadow-soft">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-navy">
                 Get Started
               </span>
               <h3 className="mt-3 text-xl font-bold text-navy">Request this service</h3>
@@ -101,7 +102,7 @@ function ServiceDetailPage() {
               </p>
               <Link
                 to="/contact"
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md gradient-emerald px-5 py-3 text-sm font-semibold text-white"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md bg-[#EAB308] px-5 py-3 text-sm font-semibold text-[#021024] transition hover:brightness-110"
               >
                 Request Service <ArrowRight className="h-4 w-4" />
               </Link>
@@ -109,9 +110,9 @@ function ServiceDetailPage() {
                 href={waLink(`Hello Magnivor, I'd like to discuss: ${s.title}.`)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-white px-5 py-3 text-sm font-semibold text-navy hover:border-emerald/40"
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border bg-[#25D366] px-5 py-3 text-sm font-semibold text-white hover:border-emerald/40"
               >
-                <MessageCircle className="h-4 w-4" style={{ color: "var(--whatsapp)" }} />
+                <WhatsAppIcon className="h-4 w-4" />
                 Chat on WhatsApp
               </a>
             </div>

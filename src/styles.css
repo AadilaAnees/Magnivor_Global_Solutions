@@ -159,11 +159,21 @@
 .flip-card.is-flipped .flip-inner {
   transform: rotateY(180deg);
 }
+
+.flip-card .flip-inner .flip-face {
+  pointer-events: none;
+}
+.flip-card:not(.is-flipped) .flip-face:first-child,
+.flip-card.is-flipped .flip-face.flip-back {
+  pointer-events: auto;
+}
+
 @utility flip-face {
   position: absolute;
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  z-index: 1; /* Ensure faces are layered properly */
 }
 @utility flip-back {
   transform: rotateY(180deg);

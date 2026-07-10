@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Search, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, Search, ChevronDown, ArrowRight, Calendar, Mail, Phone, Linkedin, Facebook, Youtube} from "lucide-react";
 import { Logo } from "./Logo";
 import { SERVICES } from "@/lib/site";
 
@@ -8,8 +8,9 @@ import { SERVICES } from "@/lib/site";
 import ctaSkyline from "@/assets/cta-skyline.jpg";
 import aboutAdvisory from "@/assets/about-advisory.jpg";
 import aboutImg from "@/assets/about.jpg";
+import resources from "@/assets/resources.jpg";
 
-type MenuType = "services" | "about" | "insights";
+type MenuType = "services" | "about" | "insights" | "resources";
 
 interface SubLink {
   label: string;
@@ -42,14 +43,13 @@ const MENU_CONTENT: Record<MenuType, MenuData> = {
       { label: "Contact us", to: "/contact" },
     ],
     links: [
-      { label: "Accounting & Bookkeeping", to: "/services/accounting-bookkeeping" },
-      { label: "Taxation & Compliance", to: "/services/taxation-compliance" },
-      { label: "Virtual CFO Services", to: "/services/virtual-cfo" },
-      { label: "Business Process Outsourcing", to: "/services/bpo-services" },
-      { label: "Corporate Training", to: "/services/corporate-training" },
-      { label: "Economic Intelligence", to: "/services/economic-intelligence" },
-      { label: "Financial Planning", to: "/services" },
-      { label: "Investor Readiness", to: "/services" },
+      { label: "Accounting", to: "/services/accounting-bookkeeping" },
+      { label: "Tax", to: "/services/taxation-compliance" },
+      { label: "Business Consulting", to: "/services/virtual-cfo" },
+      { label: "Outsourcing", to: "/services/bpo-services" },
+      { label: "Advisory", to: "/services/corporate-training" },
+      { label: "Risk & Governance", to: "/services/economic-intelligence" },
+      
     ],
     featured: {
       category: "Featured Service",
@@ -104,12 +104,34 @@ const MENU_CONTENT: Record<MenuType, MenuData> = {
       to: "/insights",
     },
   },
-};
+  resources: {
+    title: "Resources",
+    description: "Helpful tools, templates, and guides for business growth and compliance.",
+    quickLinks: [
+      { label: "View all resources", to: "/resources" },
+      { label: "Help center", to: "/contact" },
+    ],
+    links: [
+      { label: "Brochures", to: "/resources/brochures" },
+      { label: "Guides and eBooks", to: "/resources/guides" },
+      { label: "IFRS/IAS", to: "/resources/ifrs/ias" },
+      { label: "Other Useful Links", to: "/resources/other" },
+    ],
+    featured: {
+      category: "Latest Resource",
+      title: "SME Growth Playbook 2026",
+      description: "A comprehensive guide to scaling your operations and managing cash flow.",
+      image: resources, 
+      to: "/resources/playbook",
+    },
+  },
+}
 
 const menuItems = [
   { to: "/services", label: "What we do", type: "services" as MenuType | null },
   { to: "/about", label: "Who we are", type: "about" as MenuType | null },
   { to: "/insights", label: "Insights & Media", type: "insights" as MenuType | null },
+  { to: "/resources", label: "Resources", type: "resources" as MenuType | null },
   { to: "/contact", label: "Contact us", type: null },
 ] as const;
 
@@ -234,14 +256,46 @@ export function Navbar() {
       />
 
       <header
-        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 flex flex-col ${
           solid
-            ? "bg-navy border-t-2 border-t-[var(--gold)] shadow-soft"
+            ? "bg-navy shadow-soft"
             : "bg-transparent"
         }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5 lg:px-10">
-          <Logo variant="light" />
+        {/* Top Contact Strip (Desktop Only) */}
+        <div className="hidden w-full items-center justify-between bg-[#020B18] px-6 py-1.5 text-[11px] text-white/80 lg:flex lg:px-10 border-b border-white/10">
+          <p className="tracking-wide">
+            Trusted Accounting, Advisory & BPO Partner | Empowering Businesses Worldwide
+          </p>
+          <div className="flex items-center gap-5">
+            <a href="mailto:info@magnivorglobal.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail className="h-3 w-3" /> magnivorglobalsolutions@gmail.com
+            </a>
+            <a href="tel:+94771234567" className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Phone className="h-3 w-3" /> +94 78 768 4244
+            </a>
+            <div className="flex items-center gap-3 border-l border-white/20 pl-5">
+              <a href="https://www.linkedin.com/company/magnivor-global-solutions/" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-white transition-colors">
+                <Linkedin className="h-3.5 w-3.5" />
+              </a>
+              <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-white transition-colors">
+                <Facebook className="h-3.5 w-3.5" />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube" className="hover:text-white transition-colors">
+                <Youtube className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <nav className="flex w-full items-center justify-between px-6 py-3.5 lg:px-10">
+          {/* Logo & Subtitle */}
+          <div className="flex flex-col justify-center">
+            <Logo variant="light" />
+            <span className="mt-0.5 text-[10px] italic tracking-wide text-white/90">
+              (Chartered Accountants & Business Advisors)
+            </span>
+          </div>
 
           {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-7 lg:flex">
@@ -300,9 +354,10 @@ export function Navbar() {
             {/* Consultation Button */}
             <Link
               to="/contact"
-              className="hidden rounded-md bg-accent text-accent-foreground px-5 py-2.5 text-sm font-semibold shadow-soft transition hover:opacity-90 lg:inline-flex"
+              className="hidden rounded-md bg-accent text-accent-foreground px-5 py-2.5 text-sm font-semibold shadow-soft transition hover:opacity-90 lg:inline-flex items-center gap-2"
             >
-              Request a Consultation
+              <Calendar className="h-4 w-4" />
+              Book a Consultation
             </Link>
 
             {/* Hamburger Toggle */}
@@ -323,7 +378,9 @@ export function Navbar() {
             onMouseEnter={() => handleMouseEnter(activeMenu)}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="mx-auto max-w-7xl grid grid-cols-12 overflow-hidden rounded-xl bg-white shadow-elegant border border-navy/10 transition-all duration-300">
+            {/* Changed max-w-7xl to max-w-5xl to reduce overall width */}
+            <div className="mx-auto max-w-5xl grid grid-cols-12 overflow-hidden rounded-xl bg-white shadow-elegant border border-navy/10 transition-all duration-300">
+              
               {/* Left Sidebar (25% / 3 cols) */}
               <div className="col-span-3 bg-[#F5F7FA] p-8 flex flex-col justify-between border-r border-navy/5">
                 <div>
@@ -353,14 +410,16 @@ export function Navbar() {
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-navy/40 mb-5">
                   Explore Categories
                 </h3>
-                <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                {/* Increased gap-y-2 to gap-y-3 for better spacing with larger text */}
+                <div className="grid grid-cols-2 gap-x-6 gap-y-3">
                   {MENU_CONTENT[activeMenu].links.map((sub) => (
                     <Link
                       key={sub.label}
                       to={sub.to}
                       hash={sub.hash}
                       onClick={() => setActiveMenu(null)}
-                      className="group flex items-center justify-between rounded-lg p-2.5 transition-colors hover:bg-[#F5F7FA] text-xs font-semibold text-navy"
+                      // Changed text-xs to text-sm to increase font size
+                      className="group flex items-center justify-between rounded-lg p-2.5 transition-colors hover:bg-[#F5F7FA] text-sm font-semibold text-navy"
                     >
                       <span>{sub.label}</span>
                       <ArrowRight className="h-3.5 w-3.5 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 text-[#5483B3]" />

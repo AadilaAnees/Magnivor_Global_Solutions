@@ -141,7 +141,7 @@ function AboutPage() {
       />
 
       {/* Story */}
-      <section className="py-20 md:py-28 relative overflow-hidden bg-navy text-white">
+      <section className="pt-8 pb-20 md:pt-12 md:pb-28 relative overflow-hidden bg-navy text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-20 items-center">
             {/* Left side: Heading and content (no animation) */}
@@ -172,7 +172,7 @@ function AboutPage() {
       </section>
 
       {/* Mission / Vision */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white pt-8 pb-20 md:pt-12 md:pb-28">
         <div className="mx-auto max-w-6xl px-6 lg:px-10 flex flex-col gap-10">
           {/* Mission Card */}
           <div className="group rounded-2xl border border-white/10 bg-navy p-8 md:p-12 text-white shadow-soft transition duration-300 hover:-translate-y-1.5 hover:shadow-elegant flex flex-col md:flex-row items-center gap-8 md:gap-12">
@@ -238,7 +238,7 @@ function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="relative overflow-hidden py-20 md:py-28">
+      <section className="relative overflow-hidden pt-8 pb-20 md:pt-12 md:pb-28">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-32 top-20 h-[360px] w-[360px] rounded-full bg-emerald/10 blur-[120px]"
@@ -289,7 +289,7 @@ function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section id="team" className="bg-white py-20 md:py-28">
+      <section id="team" className="bg-white pt-8 pb-20 md:pt-12 md:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="max-w-2xl mb-14">
             <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-emerald">
@@ -303,9 +303,9 @@ function AboutPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {TEAM.map((m, i) => (
-              <TeamCard key={m.role} member={m} featured={i === 0} />
+          <div className="grid gap-6 lg:grid-cols-2">
+            {TEAM.map((m) => (
+              <TeamCard key={m.role} member={m} />
             ))}
           </div>
 
@@ -357,10 +357,8 @@ const TEAM = [
 
 function TeamCard({
   member,
-  featured,
 }: {
-  member: (typeof TEAM)[number];
-  featured?: boolean;
+  member: (typeof TEAM)[number] & { image?: string };
 }) {
   const initials = member.name
     .split(" ")
@@ -370,55 +368,61 @@ function TeamCard({
 
   return (
     <article
-      className={`group relative flex flex-col items-center rounded-2xl border border-white/10 p-8 text-center transition duration-300 hover:-translate-y-1.5 hover:border-gold/60 hover:shadow-elegant ${
-        featured ? "md:col-span-2 lg:col-span-3" : ""
-      }`}
+      className="group flex flex-col sm:flex-row overflow-hidden rounded-2xl border border-white/10 transition duration-300 hover:-translate-y-1.5 hover:border-gold/60 hover:shadow-elegant"
       style={{ backgroundColor: "var(--navy)" }}
     >
-      {/* Avatar */}
-      <div
-        className="flex h-20 w-20 items-center justify-center rounded-full ring-1 ring-gold/40"
-        style={{ backgroundColor: "var(--emerald-dark)" }}
-      >
-        <span className="font-display text-xl font-bold text-gold">{initials}</span>
+      {/* Left Side: Rectangular Photo Area */}
+      <div className="relative w-full sm:w-2/5 min-h-[240px] flex shrink-0 items-center justify-center border-b sm:border-b-0 sm:border-r border-white/10 bg-slate-800/50">
+        {member.image ? (
+          <img 
+            src={member.image} 
+            alt={member.name} 
+            className="absolute inset-0 h-full w-full object-cover grayscale transition duration-500 group-hover:grayscale-0" 
+          />
+        ) : (
+          <span className="font-display text-5xl font-bold text-white/10">{initials}</span>
+        )}
       </div>
 
-      {/* Gold separator */}
-      <span className="mt-5 block h-px w-12 bg-gold" />
+      {/* Right Side: Candidate Info / CV Summary */}
+      <div className="flex w-full flex-col p-6 sm:p-8 text-left">
+        <h3 className="text-xl font-bold text-white">{member.name}</h3>
+        <p className="mt-1 text-sm font-semibold text-emerald">{member.role}</p>
 
-      <h3 className="mt-5 text-lg font-bold text-white">{member.name}</h3>
-      <p className="mt-1 text-sm font-semibold text-emerald">{member.role}</p>
+        {/* Separator */}
+        <span className="mt-4 block h-px w-12 bg-gold/50" />
 
-      <p className="mt-2 text-[11px] uppercase tracking-wider text-white/50">
-        {member.qualification} · {member.experience}
-      </p>
+        <p className="mt-4 text-[11px] uppercase tracking-wider text-white/50">
+          {member.qualification} · {member.experience}
+        </p>
 
-      {/* Expertise pills */}
-      <ul className="mt-4 flex flex-wrap justify-center gap-1.5">
-        {expertise.map((tag) => (
-          <li
-            key={tag}
-            className="rounded-full border border-gold/50 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-gold"
-          >
-            {tag}
-          </li>
-        ))}
-      </ul>
+        {/* Expertise pills */}
+        <ul className="mt-3 flex flex-wrap gap-1.5">
+          {expertise.map((tag) => (
+            <li
+              key={tag}
+              className="rounded-full border border-gold/30 bg-gold/5 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-gold"
+            >
+              {tag}
+            </li>
+          ))}
+        </ul>
 
-      <p
-        className={`mt-5 text-sm leading-relaxed ${featured ? "max-w-2xl" : ""}`}
-        style={{ color: "var(--muted-foreground)" }}
-      >
-        {member.bio}
-      </p>
+        <p
+          className="mt-5 text-sm leading-relaxed flex-1"
+          style={{ color: "var(--muted-foreground)" }}
+        >
+          {member.bio}
+        </p>
 
-      <a
-        href="#"
-        aria-label={`${member.name} on LinkedIn`}
-        className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-gold transition hover:text-white"
-      >
-        <Linkedin className="h-4 w-4" /> LinkedIn
-      </a>
+        <a
+          href="#"
+          aria-label={`${member.name} on LinkedIn`}
+          className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-gold transition hover:text-white"
+        >
+          <Linkedin className="h-4 w-4" /> LinkedIn
+        </a>
+      </div>
     </article>
   );
 }

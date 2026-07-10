@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Calculator,
   Receipt,
+  Play,
   Briefcase,
   Building2,
   GraduationCap,
@@ -116,9 +117,12 @@ const INSIGHT_PREVIEW = [
 ];
 
 const HERO_PILLARS = [
-  { icon: ShieldCheck, label: "IFRS-Aligned Expertise" },
-  { icon: Globe2, label: "Cross-Border Advisory" },
-  { icon: BarChart3, label: "CFO-Level Intelligence" },
+  { icon: Calculator, label: "ACCOUNTING" },
+  { icon: Receipt, label: "TAX" },
+  { icon: Briefcase, label: "ADVISORY" },
+  { icon: Building2, label: "OUTSOURCING" },
+  { icon: ShieldCheck, label: "RISK & GOVERNANCE" },
+  { icon: LineChart, label: "BUSINESS CONSULTING" },
 ];
 
 const TRENDING_TOPICS = [
@@ -133,7 +137,7 @@ function HomePage() {
     <>
       {/* HERO */}
       <section
-        className="relative isolate w-full overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32"
+        className="relative isolate w-full overflow-hidden pt-32 pb-4 md:pt-44 md:pb-6"
         style={{ backgroundColor: "var(--navy)" }}
       >
         {/* Background video */}
@@ -170,43 +174,50 @@ function HomePage() {
           className="pointer-events-none absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full bg-gold opacity-15 blur-[140px]"
         />
 
-        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center px-6 text-center text-white lg:px-10">
-          <Reveal delay={80}>
-            <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
-              Global Insight. <span className="text-gold">Strategic Clarity.</span> Financial Precision.
-            </h1>
-          </Reveal>
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-start px-6 text-left text-white lg:px-10">
+          <div className="max-w-4xl">
+            <Reveal delay={80}>
+              <h1 className="mt-6 text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl">
+                Together <span className="text-gold">Let’s Shape Your Business</span> & Financial Future.
+              </h1>
+            </Reveal>
 
-          <Reveal delay={160}>
-            <p className="mt-6 text-base text-white/75 md:text-lg" style={{ maxWidth: "600px" }}>
-              Magnivor Global Solutions is a Sri Lanka–based international consulting firm delivering accounting,
-              taxation, CFO advisory, outsourcing and economic intelligence services.
-            </p>
-          </Reveal>
+            <Reveal delay={160}>
+              <p className="mt-6 max-w-2xl text-base text-white/75 md:text-lg">
+                Complete Business Processes Support with our robust Global Insight, Strategic Clarity, and Innovative Solutions.
+              </p>
+            </Reveal>
 
-          {/* Floating pillar badges */}
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            {HERO_PILLARS.map((p, i) => (
-              <Reveal key={p.label} delay={220 + i * 100}>
-                <span
-                  className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-4 py-2 text-xs font-semibold text-white shadow-soft backdrop-blur transition hover:border-gold/70"
-                  style={{ backgroundColor: "rgba(2,16,36,0.85)" }}
+            {/* Floating pillar badges */}
+            <div className="mt-9 flex flex-wrap items-center justify-start gap-3">
+              {HERO_PILLARS.map((p, i) => (
+                <Reveal key={p.label} delay={220 + i * 100}>
+                  <span
+                    className="inline-flex items-center gap-2 rounded-full border border-gold/40 px-4 py-2 text-xs font-semibold text-white shadow-soft backdrop-blur transition hover:border-gold/70"
+                    style={{ backgroundColor: "rgba(2,16,36,0.85)" }}
+                  >
+                    <p.icon className="h-3.5 w-3.5 text-gold" />
+                    {p.label}
+                  </span>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal delay={560}>
+              <div className="mt-6 flex flex-wrap items-center justify-start gap-4">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-[#EAB308] text-[#021024] px-7 py-3.5 text-sm font-bold shadow-elegant transition hover:brightness-110"
                 >
-                  <p.icon className="h-3.5 w-3.5 text-gold" />
-                  {p.label}
-                </span>
-              </Reveal>
-            ))}
+                  Book a free Consultation <ArrowRight className="h-4 w-4" />
+                </Link>
+                
+                <button className="inline-flex cursor-pointer items-center justify-center gap-2 rounded-md border border-white/20 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white shadow-elegant backdrop-blur transition hover:bg-white/20">
+                  <Play className="h-4 w-4 fill-current" /> Watch our approach
+                </button>
+              </div>
+            </Reveal>
           </div>
-
-          <Reveal delay={560}>
-            <Link
-              to="/contact"
-              className="mt-10 inline-flex items-center justify-center gap-2 rounded-md bg-accent text-accent-foreground px-7 py-3.5 text-sm font-semibold shadow-elegant transition hover:brightness-90"
-            >
-              Request a Consultation <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Reveal>
         </div>
       </section>
 
@@ -234,63 +245,8 @@ function HomePage() {
         </div>
       </div>
 
-      {/* ABOUT SNAPSHOT */}
-      <section className="relative overflow-hidden bg-white py-20 md:py-28">
-        {/* Soft background glows for clean, glowing light gray effect */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-1/2 -right-40 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-emerald/10 blur-[120px]"
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-gold/5 blur-[100px]"
-        />
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
-            {/* Left side: Text content */}
-            <div className="lg:col-span-7 text-left">
-              <Reveal>
-                <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-navy-soft">
-                    About Magnivor
-                  </span>
-                  <h2 className="mt-3 text-3xl font-bold text-navy md:text-4xl leading-tight">
-                    A multidisciplinary advisory firm built for global business
-                  </h2>
-                  <p className="mt-5 text-navy/70 max-w-2xl text-base md:text-lg leading-relaxed">
-                    Magnivor Global Solutions combines finance, economics and strategy to support global clients with
-                    high-impact financial solutions — bridging accounting precision with strategic financial intelligence.
-                  </p>
-                  <Link
-                    to="/about"
-                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-navy-soft hover:text-navy"
-                  >
-                    Read our story <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Right side: Styled image with decorative glow */}
-            <div className="lg:col-span-5">
-              <Reveal delay={200}>
-                <div className="relative">
-                  <div className="absolute -inset-3 rounded-2xl bg-gradient-to-r from-emerald/20 to-gold/20 blur-lg opacity-80" />
-                  <img
-                    src={strategyImg}
-                    alt="Corporate Strategy"
-                    className="relative z-10 w-full rounded-2xl border border-border/50 object-cover shadow-elegant"
-                  />
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* SERVICES OVERVIEW — FLIP CARDS */}
-      <section className="py-20 md:py-28">
+      <section className="bg-navy pt-8 pb-20 md:pt-12 md:pb-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -319,8 +275,10 @@ function HomePage() {
         </div>
       </section>
 
+      
+
       {/* WHY MAGNIVOR */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white pt-6 pb-8 md:pt-10 md:pb-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="max-w-2xl">
@@ -352,7 +310,7 @@ function HomePage() {
       </section>
 
       {/* INDUSTRIES — INTERACTIVE CAROUSEL */}
-      <section className="relative overflow-hidden bg-navy py-20 md:py-28 text-white">
+      <section className="relative overflow-hidden bg-navy pt-6 pb-8 md:pt-10 md:pb-12 text-white">
         {/* Soft background glows for clean dark themed effect */}
         <div
           aria-hidden
@@ -454,7 +412,7 @@ function HomePage() {
       </section>
 
       {/* INSIGHTS PREVIEW */}
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-white pt-6 pb-8 md:pt-10 md:pb-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <Reveal>
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
@@ -491,6 +449,61 @@ function HomePage() {
         </div>
       </section>
 
+      {/* ABOUT SNAPSHOT */}
+      <section className="relative overflow-hidden bg-navy pt-6 pb-8 md:pt-10 md:pb-12">
+        {/* Soft background glows for clean, glowing light effect */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute top-1/2 -right-40 h-[400px] w-[400px] -translate-y-1/2 rounded-full bg-emerald/10 blur-[120px]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute bottom-0 right-1/4 h-[300px] w-[300px] rounded-full bg-gold/5 blur-[100px]"
+        />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+            {/* Left side: Text content */}
+            <div className="lg:col-span-7 text-left">
+              <Reveal>
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
+                    About Magnivor
+                  </span>
+                  <h2 className="mt-3 text-3xl font-bold text-white md:text-4xl leading-tight">
+                    A multidisciplinary advisory firm built for global business
+                  </h2>
+                  <p className="mt-5 text-white/70 max-w-2xl text-base md:text-lg leading-relaxed">
+                    Magnivor Global Solutions combines finance, economics and strategy to support global clients with
+                    high-impact financial solutions — bridging accounting precision with strategic financial intelligence.
+                  </p>
+                  <Link
+                    to="/about"
+                    className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-white transition-colors"
+                  >
+                    Read our story <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right side: Styled image with decorative glow */}
+            <div className="lg:col-span-5">
+              <Reveal delay={200}>
+                <div className="relative">
+                  <div className="absolute -inset-3 rounded-2xl bg-gradient-to-r from-emerald/20 to-gold/20 blur-lg opacity-80" />
+                  <img
+                    src={strategyImg}
+                    alt="Corporate Strategy"
+                    className="relative z-10 w-full rounded-2xl border border-white/10 object-cover shadow-elegant"
+                  />
+                </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <FinalCTA />
     </>
   );
@@ -500,7 +513,7 @@ function FlipServiceCard({
   service,
   Icon,
 }: {
-  service: (typeof SERVICES)[number];
+  service: (typeof SERVICES)[number] & { image?: string };
   Icon: React.ComponentType<{ className?: string }>;
 }) {
   const [flipped, setFlipped] = useState(false);
@@ -512,7 +525,6 @@ function FlipServiceCard({
   };
   const handleClick = (e: React.MouseEvent) => {
     if ((e.target as HTMLElement).closest("a")) return;
-    // only toggle on touch, mouse is handled by pointer events
     const pe = e.nativeEvent as PointerEvent;
     if (pe.pointerType === "touch") {
       e.preventDefault();
@@ -522,32 +534,75 @@ function FlipServiceCard({
 
   return (
     <div
-      className={`flip-card h-64 w-full ${flipped ? "is-flipped" : ""}`}
+      className={`flip-card h-72 w-full ${flipped ? "is-flipped" : ""}`}
       onPointerEnter={handleMouseEnter}
       onPointerLeave={handleMouseLeave}
       onClick={handleClick}
     >
-      <div className="flip-inner">
+      <div className="flip-inner h-full w-full">
         {/* FRONT */}
-        <div className="flip-face flex flex-col items-center justify-center rounded-xl border border-border bg-white p-7 text-center shadow-soft">
-          <span className="inline-flex h-14 w-14 items-center justify-center rounded-xl bg-emerald/10 text-emerald">
-            <Icon className="h-7 w-7" />
-          </span>
-          <h3 className="mt-5 text-lg font-semibold text-navy">{service.title}</h3>
-          <span className="mt-3 rounded-full bg-secondary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
-            {service.tag}
-          </span>
+        <div className="flip-face h-full w-full flex flex-col justify-end rounded-xl border border-white/10 bg-[#020B18] p-6 text-left shadow-soft relative overflow-hidden group cursor-pointer">
+          
+          {/* Service Background Image */}
+          {service.image && (
+            <div 
+              className="absolute inset-0 z-0 opacity-60 transition-transform duration-1000 group-hover:scale-110 group-hover:opacity-80"
+              style={{
+                backgroundImage: `url(${service.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          )}
+
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#020B18] via-[#020B18]/60 to-transparent" />
+
+          {/* Front Content */}
+          <div className="relative z-10 flex flex-col items-start w-full mt-auto">
+            {/* Tag & Icon Row (Increased to text-xs) */}
+            <div className="flex items-center gap-2 mb-2.5">
+              <Icon className="h-5 w-5 text-gold" />
+              <span className="text-xs font-bold uppercase tracking-[0.15em] text-gold">
+                {service.tag}
+              </span>
+            </div>
+            
+            {/* Title (Increased to text-2xl) */}
+            <h3 className="text-2xl font-bold text-white leading-snug mb-4 group-hover:text-white/90 transition-colors">
+              {service.title}
+            </h3>
+
+            {/* Read More Cue (Increased to text-xs) */}
+            <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-white/60 transition-colors group-hover:text-gold">
+              Read More <ArrowRight className="h-3.5 w-3.5" />
+            </span>
+          </div>
         </div>
+
         {/* BACK */}
-        <div className="flip-face flip-back flex flex-col justify-between rounded-xl gradient-emerald p-7 text-white shadow-elegant">
-          <p className="text-sm leading-relaxed text-white/95">{service.short}</p>
+        <div className="flip-face flip-back h-full w-full flex flex-col justify-between rounded-xl gradient-emerald p-7 text-white shadow-elegant">
+          <div>
+            {/* Back Header (Increased to text-sm) */}
+            <div className="flex items-center gap-3 mb-4 opacity-80">
+              <Icon className="h-5 w-5" />
+              <span className="text-sm font-bold uppercase tracking-wider">{service.title}</span>
+            </div>
+            {/* Description (Increased to text-base) */}
+            <p className="text-base leading-relaxed text-white/95">{service.short}</p>
+          </div>
+          
+          {/* Learn More Button (Increased to text-base with slightly more padding) */}
           <Link
-            to="/services/$slug"
-            params={{ slug: service.slug }}
-            className="mt-4 inline-flex items-center gap-1.5 self-start rounded-md bg-white px-4 py-2 text-sm font-semibold text-emerald-dark transition hover:bg-white/90"
+          to="/services/$slug"
+          params={{ slug: service.slug }}
+          className="relative z-50 mt-4 inline-flex items-center gap-1.5 self-start rounded-md bg-white px-5 py-2.5 text-base font-semibold text-emerald-dark transition hover:bg-white/90"
+          onClick={(e) => e.stopPropagation()} // Stop the flip trigger from interfering
           >
-            Learn More <ArrowRight className="h-3.5 w-3.5" />
-          </Link>
+            Learn More <ArrowRight className="h-4 w-4" />
+            </Link>
+          
+        
         </div>
       </div>
     </div>

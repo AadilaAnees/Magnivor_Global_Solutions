@@ -72,7 +72,7 @@ function ContactPage() {
         description="Three ways to reach us: structured inquiries via the form, formal proposals by email, or instant chat on WhatsApp."
       />
 
-      <section className="py-20 md:py-28">
+      <section className="pt-8 pb-20 md:pt-12 md:pb-28">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_1.2fr] lg:px-10">
           {/* Contact info */}
           <div>

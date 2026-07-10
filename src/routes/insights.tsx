@@ -204,7 +204,7 @@ function InsightsPage() {
         description="Research-grade thinking from Magnivor advisors — translated into practical guidance for leadership teams."
       />
 
-      <section className="relative py-16 md:py-20 bg-white">
+      <section className="relative pt-8 pb-20 md:pt-12 md:pb-28 bg-white">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-32 top-10 h-[360px] w-[360px] rounded-full bg-emerald/10 blur-[120px]"

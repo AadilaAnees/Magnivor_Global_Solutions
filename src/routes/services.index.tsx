@@ -12,7 +12,7 @@ import { SERVICES } from "@/lib/site";
 import { PageHeader } from "@/components/site/PageHeader";
 import { FinalCTA } from "@/components/site/FinalCTA";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "What We Do — Magnivor Global Solutions" },
@@ -55,7 +55,7 @@ function ServicesPage() {
         description="Six service pillars — covering accounting, compliance, leadership, operations, capability and intelligence."
       />
 
-      <section className="bg-white py-20 md:py-28 relative overflow-hidden">
+      <section className="bg-white pt-8 pb-20 md:pt-12 md:pb-28 relative overflow-hidden">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-32 top-10 h-[360px] w-[360px] rounded-full bg-emerald/10 blur-[120px]"

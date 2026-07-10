@@ -8,14 +8,11 @@ export function Footer() {
   return (
     <footer className="bg-navy text-white/80">
       <div className="mx-auto max-w-screen-2xl px-6 py-16 lg:px-10">
-        {/* Changed grid layout from 7 columns to 6 columns to prevent stacking */}
-        {/* Changed gap-8 to gap-x-4 gap-y-10 and xl:gap-x-6 to reduce horizontal spacing */}
         <div className="grid gap-x-4 gap-y-10 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 xl:gap-x-6">
           
           {/* 1. BRAND COLUMN */}
           <div className="xl:col-span-1">
             <Logo variant="light" />
-            {/* Reduced text-sm to text-[13px] */}
             <p className="mt-5 text-[13px] text-white/65">
               A modern professional services firm providing accounting, advisory, and BPO solutions to businesses worldwide.
             </p>
@@ -42,11 +39,9 @@ export function Footer() {
 
           {/* 2. WHAT WE DO */}
           <div>
-            {/* Reduced heading size slightly to text-[11px] */}
             <h4 className="text-[11px] font-semibold uppercase tracking-widest text-[#82B2CB]">
               What We Do
             </h4>
-            {/* Reduced space-y-2.5 to space-y-2 and text-sm to text-[13px] */}
             <ul className="mt-4 space-y-2 text-[13px]">
               {SERVICES.map((s) => (
                 <li key={s.slug}>
@@ -112,7 +107,6 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-[13px]">
               <li className="flex items-start gap-2.5">
                 <Mail className="mt-0.5 h-4 w-4 flex-none text-[#82B2CB]" />
-                {/* Replaced strict inline styling with break-all to allow the long email to wrap securely */}
                 <a
                   href={`mailto:${SITE.email}`}
                   className="block text-white/70 hover:text-white break-all"
@@ -133,13 +127,15 @@ export function Footer() {
             </ul>
             <div className="mt-5">
               <p className="text-[13px] text-white/90">Mon–Fri | 9.00 AM - 6.00 PM</p>
-              {/* Reduced button padding and text size to better fit smaller columns */}
-              <button className="mt-3 w-full rounded-md bg-[#F4B942] px-3 py-2 text-[13px] font-semibold text-navy transition hover:bg-[#F4B942]/90">
-                Book a Consultation
-              </button>
+              <Link to="/contact">
+                <button className="mt-3 w-full rounded-md bg-[#F4B942] px-3 py-2 text-[13px] font-semibold text-navy transition hover:bg-[#F4B942]/90">
+                  Book a Consultation
+                </button>
+              </Link>
             </div>
-          </div>
+          </div> {/* Added missing closing div here */}
         </div>
+
         {/* 7. NEWSLETTER & LEGAL */}
         <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-white/10 pt-10 md:flex-row md:items-start">
           <div className="flex flex-col">
@@ -150,7 +146,6 @@ export function Footer() {
               Stay updated with our latest insights and updates.
             </p>
             
-            {/* Privacy Policy & Terms of Use */}
             <div className="mt-6 flex items-center gap-3 text-sm text-white/50">
               <Link to="/privacy" className="hover:text-white">Privacy Policy</Link>
               <span className="text-white/20">|</span>

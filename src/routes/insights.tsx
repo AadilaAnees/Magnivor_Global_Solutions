@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
-import { Calendar, User, ArrowRight, ImageIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { z } from "zod";
@@ -60,64 +60,6 @@ type Post = {
   image?: string;
 };
 
-// Fallback samples until Sanity is configured / populated.
-const FALLBACK: Post[] = [
-  {
-    _id: "f1",
-    category: "Economic Trends",
-    title: "Navigating CBSL's policy rate shifts: a playbook for SMEs",
-    excerpt:
-      "Tighter monetary conditions demand disciplined liquidity management and a sharper view of working capital.",
-    date: "Jun 2026",
-    author: "Magnivor Research",
-  },
-  {
-    _id: "f2",
-    category: "Taxation Updates",
-    title: "Cross-border VAT for service exporters: practical guidance",
-    excerpt:
-      "Structuring service flows to avoid double taxation while staying fully compliant across jurisdictions.",
-    date: "May 2026",
-    author: "Tax Advisory Desk",
-  },
-  {
-    _id: "f3",
-    category: "Financial Strategy",
-    title: "IFRS 18 and the new shape of performance reporting",
-    excerpt:
-      "What boards need to know about the structure, subtotals and disclosures introduced by IFRS 18.",
-    date: "May 2026",
-    author: "IFRS Team",
-  },
-  {
-    _id: "f4",
-    category: "Corporate Governance",
-    title: "Building a board pack that actually drives decisions",
-    excerpt:
-      "Cutting noise, sharpening KPIs and giving leadership the signals that matter most.",
-    date: "Apr 2026",
-    author: "CFO Practice",
-  },
-  {
-    _id: "f5",
-    category: "Business Intelligence",
-    title: "Macro signals SMEs should track in the next 12 months",
-    excerpt:
-      "Five indicators worth watching — and how to translate them into operational decisions.",
-    date: "Apr 2026",
-    author: "Economic Intelligence",
-  },
-  {
-    _id: "f6",
-    category: "Other",
-    title: "Notes from the field: lessons from a year of advisory work",
-    excerpt:
-      "Patterns, surprises and recurring themes from across our 2025 engagements.",
-    date: "Feb 2026",
-    author: "Magnivor Editors",
-  },
-];
-
 function normalizeCategory(value?: string): Exclude<Category, "All"> {
   const allowed = CATEGORIES.filter((c) => c !== "All") as readonly Exclude<Category, "All">[];
   return (allowed.find((c) => c === value) ?? "Other") as Exclude<Category, "All">;
@@ -143,7 +85,7 @@ function mapSanity(a: SanityArticle): Post {
 function InsightsPage() {
   const search = Route.useSearch();
   const [active, setActive] = useState<Category>("All");
-  const [posts, setPosts] = useState<Post[]>(FALLBACK);
+  const [posts, setPosts] = useState<Post[]>([]); // Starts empty to display Coming Soon
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -151,23 +93,6 @@ function InsightsPage() {
       setActive(search.category as Category);
     }
   }, [search.category]);
-
-  useEffect(() => {
-    if (search.articleId && posts.length > 0) {
-      const timer = setTimeout(() => {
-        const el = document.getElementById(search.articleId!);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth", block: "center" });
-          el.classList.add("ring-2", "ring-gold", "scale-[1.02]", "transition-all", "duration-500");
-          const clearTimer = setTimeout(() => {
-            el.classList.remove("ring-2", "ring-gold", "scale-[1.02]");
-          }, 3000);
-          return () => clearTimeout(clearTimer);
-        }
-      }, 400);
-      return () => clearTimeout(timer);
-    }
-  }, [search.articleId, posts, active]);
 
   useEffect(() => {
     if (!sanityEnabled || !sanityClient) return;
@@ -186,10 +111,7 @@ function InsightsPage() {
     };
   }, []);
 
-  const filtered = useMemo(
-    () => (active === "All" ? posts : posts.filter((p) => p.category === active)),
-    [active, posts],
-  );
+  const filtered = active === "All" ? posts : posts.filter((p) => p.category === active);
 
   return (
     <>
@@ -215,6 +137,7 @@ function InsightsPage() {
         />
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+          {/* Category Filter Pills */}
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((c) => {
               const isActive = c === active;
@@ -223,7 +146,7 @@ function InsightsPage() {
                   key={c}
                   type="button"
                   onClick={() => setActive(c)}
-                  className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition ${
+                  className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition cursor-pointer ${
                     isActive
                       ? "border-emerald bg-emerald text-white shadow-soft"
                       : "border-border bg-white/70 text-navy/75 backdrop-blur hover:border-emerald/40 hover:text-emerald"
@@ -236,81 +159,38 @@ function InsightsPage() {
           </div>
 
           <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            {loading
-              ? "Loading…"
-              : `${filtered.length} ${filtered.length === 1 ? "article" : "articles"}${
-                  active !== "All" ? ` · ${active}` : ""
-                }`}
+            {loading ? "Loading…" : active !== "All" ? `Category: ${active}` : "All Categories"}
           </p>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
-              <article
-                key={p._id}
-                id={p._id}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-white transition hover:-translate-y-1 hover:border-emerald/40 hover:shadow-elegant"
-              >
-                <div className="relative aspect-[16/9] overflow-hidden border-b border-white/40">
-                  {p.image ? (
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-navy/90 via-navy to-emerald-dark">
-                      <div
-                        aria-hidden
-                        className="absolute inset-0 opacity-20"
-                        style={{
-                          backgroundImage:
-                            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-                          backgroundSize: "22px 22px",
-                        }}
-                      />
-                      <ImageIcon className="relative h-10 w-10 text-white/40" />
-                    </div>
-                  )}
-                  <span className="absolute left-3 top-3 rounded-md bg-gold px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-navy shadow-soft">
-                    {p.category}
-                  </span>
-                </div>
-
-
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="text-lg font-semibold leading-snug text-navy group-hover:text-emerald">
-                    {p.title}
-                  </h3>
-                  <p className="mt-3 flex-1 text-sm text-navy/80">{p.excerpt}</p>
-
-                  <div className="mt-6 flex items-center justify-between border-t border-border/70 pt-4 text-xs text-muted-foreground">
-                    <span className="inline-flex items-center gap-1.5">
-                      <User className="h-3.5 w-3.5" /> {p.author}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      <Calendar className="h-3.5 w-3.5" /> {p.date}
-                    </span>
-                  </div>
-
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald">
-                    Read article <ArrowRight className="h-3.5 w-3.5" />
-                  </span>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {filtered.length === 0 && (
-            <div className="mt-10 rounded-2xl border border-dashed border-border bg-white/60 p-12 text-center backdrop-blur">
-              <p className="text-sm text-muted-foreground">
-                No articles in this category yet — check back soon.
+          {/* COMING SOON STATE */}
+          {filtered.length === 0 && !loading && (
+            <div className="mt-12 rounded-2xl border border-border bg-[#021024] p-12 md:p-20 text-center text-white shadow-elegant relative overflow-hidden">
+              <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-gold/10 blur-3xl pointer-events-none" />
+              <div className="absolute -left-20 -bottom-20 h-60 w-60 rounded-full bg-emerald/10 blur-3xl pointer-events-none" />
+              
+              <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gold/15 text-gold mb-6 shadow-soft">
+                <Sparkles className="h-8 w-8" />
+              </span>
+              
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-gold block mb-2">
+                Coming Soon
+              </span>
+              
+              <h3 className="text-2xl md:text-4xl font-bold tracking-tight text-white max-w-xl mx-auto">
+                Research publications are currently in development
+              </h3>
+              
+              <p className="mt-4 text-sm md:text-base text-white/70 max-w-lg mx-auto leading-relaxed">
+                {active !== "All" 
+                  ? `We are finalizing our expert insights for "${active}". Check back soon or subscribe below to get notified when it drops.`
+                  : "Our senior advisors and research team are putting together comprehensive briefs on economic trends, taxation updates, and financial strategy."}
               </p>
             </div>
           )}
         </div>
       </section>
 
+      {/* Subscribe Section */}
       <section className="bg-secondary py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-emerald">
@@ -330,11 +210,11 @@ function InsightsPage() {
               type="email"
               required
               placeholder="you@company.com"
-              className="flex-1 rounded-md border border-border bg-white px-4 py-3 text-sm outline-none focus:border-emerald"
+              className="flex-1 rounded-md border border-border bg-white px-4 py-3 text-sm outline-none focus:border-emerald text-navy"
             />
             <button
               type="submit"
-              className="rounded-md gradient-emerald px-5 py-3 text-sm font-semibold text-white"
+              className="rounded-md bg-[#EAB308] px-5 py-3 text-sm font-semibold text-[#021024] transition hover:brightness-110"
             >
               Subscribe
             </button>

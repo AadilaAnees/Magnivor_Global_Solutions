@@ -289,14 +289,17 @@ export function Navbar() {
         </div>
 
         <nav className="flex w-full items-center justify-between px-6 py-3.5 lg:px-10">
-          {/* Logo & Subtitle */}
-          <div className="flex flex-col justify-center">
+          {/* Logo & Split Subtitle */}
+          <div className="flex items-center gap-3.5">
             <Logo variant="light" />
-            <span className="mt-0.5 text-[10px] italic tracking-wide text-white/90">
-              (Chartered Accountants & Business Advisors)
-            </span>
+            <div className="hidden sm:block h-9 w-px bg-white/15" />
+            <div className="flex flex-col justify-center text-[11px] sm:text-xs italic font-medium tracking-wide text-white/80 leading-tight">
+              <span>(Chartered Accountants</span>
+              <span>& Business Advisors)</span>
+            </div>
           </div>
 
+          
           {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-7 lg:flex">
             {menuItems.map((item) => {

@@ -67,7 +67,6 @@ export function Footer() {
               <li><Link to="/leadership" className="text-white/70 hover:text-white">Our Leadership</Link></li>
               <li><Link to="/approach" className="text-white/70 hover:text-white">Our Approach</Link></li>
               <li><Link to="/values" className="text-white/70 hover:text-white">Our Values</Link></li>
-              <li><Link to="/global-presence" className="text-white/70 hover:text-white">Global Presence</Link></li>
             </ul>
           </div>
 

@@ -8,13 +8,13 @@ import imgRisk from "@/assets/risk.png";
 export const SITE = {
   name: "Magnivor Global Solutions",
   shortName: "Magnivor",
-  email: "magnivorglobalsolutions@gmail.com",
-  phoneDisplay: "+94 78 768 4244", 
-  phoneTel: "+94787684244", 
-  whatsappNumber: "94787684244",
+  email: "consult@magnivorglobal.com",
+  phoneDisplay: "+94 71 218 2124",
+  phoneTel: "+94712182124",
+  whatsappNumber: "94712182124",
   whatsappMessage: "Hello Magnivor Global Solutions, I would like to request a consultation.",
   address: "27, 5 Upananda Mawatha, Dehiwala-Mount Lavinia 10350, Sri Lanka",
-  formspreeId: "maqzzbeq",
+  formspreeId: "mqpzqrpd",
   social: {
     facebook: "https://facebook.com/magnivorglobalsolutions",
     instagram: "https://instagram.com/magnivorglobalsolutions",

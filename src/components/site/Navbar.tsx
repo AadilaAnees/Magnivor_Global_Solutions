@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, X, Search, ChevronDown, ArrowRight, Calendar, Mail, Phone, Linkedin, Facebook, Youtube} from "lucide-react";
+import { Menu, X, Search, ChevronDown, ArrowRight, Calendar, Mail, Phone, Linkedin, Facebook, Instagram } from "lucide-react";
 import { Logo } from "./Logo";
-import { SERVICES } from "@/lib/site";
+import { SERVICES, SITE } from "@/lib/site";
 
 // Import featured assets for mega menu panels
 import ctaSkyline from "@/assets/cta-skyline.jpg";
@@ -268,35 +268,30 @@ export function Navbar() {
             Trusted Accounting, Advisory & BPO Partner | Empowering Businesses Worldwide
           </p>
           <div className="flex items-center gap-5">
-            <a href="mailto:info@magnivorglobal.com" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Mail className="h-3 w-3" /> magnivorglobalsolutions@gmail.com
+            <a href={`mailto:${SITE.email}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Mail className="h-3 w-3" /> {SITE.email}
             </a>
-            <a href="tel:+94771234567" className="flex items-center gap-1.5 hover:text-white transition-colors">
-              <Phone className="h-3 w-3" /> +94 78 768 4244
+            <a href={`tel:${SITE.phoneTel}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
+              <Phone className="h-3 w-3" /> {SITE.phoneDisplay}
             </a>
             <div className="flex items-center gap-3 border-l border-white/20 pl-5">
-              <a href="https://www.linkedin.com/company/magnivor-global-solutions/" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-white transition-colors">
+              <a href={SITE.social.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-white transition-colors">
                 <Linkedin className="h-3.5 w-3.5" />
               </a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-white transition-colors">
+              <a href={SITE.social.facebook} target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-white transition-colors">
                 <Facebook className="h-3.5 w-3.5" />
               </a>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube" className="hover:text-white transition-colors">
-                <Youtube className="h-3.5 w-3.5" />
+              <a href={SITE.social.instagram} target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-white transition-colors">
+                <Instagram className="h-3.5 w-3.5" />
               </a>
             </div>
           </div>
         </div>
 
-        <nav className="flex w-full items-center justify-between px-6 py-3.5 lg:px-10">
-          {/* Logo & Split Subtitle */}
-          <div className="flex items-center gap-3.5">
+        <nav className="flex w-full items-center justify-between px-6 py-2.5 lg:px-10">
+          {/* Logo */}
+          <div className="flex items-center">
             <Logo variant="light" />
-            <div className="hidden sm:block h-9 w-px bg-white/15" />
-            <div className="flex flex-col justify-center text-[11px] sm:text-xs italic font-medium tracking-wide text-white/80 leading-tight">
-              <span>(Chartered Accountants</span>
-              <span>& Business Advisors)</span>
-            </div>
           </div>
 
           

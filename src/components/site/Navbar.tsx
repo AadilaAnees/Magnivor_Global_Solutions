@@ -67,12 +67,13 @@ const MENU_CONTENT: Record<MenuType, MenuData> = {
       { label: "Contact us", to: "/contact" },
     ],
     links: [
-      { label: "Vision & Mission", to: "/about" },
+      { label: "Vision & Mission", to: "/about", hash: "vision-mission" },
       { label: "Meet the Team", to: "/about", hash: "team" },
-      { label: "Core Values", to: "/about" },
-      { label: "Our Story", to: "/about" },
-      { label: "Our Presence", to: "/about" },
-      { label: "Careers & Partners", to: "/contact" },
+      { label: "Core Values", to: "/about", hash: "core-values" },
+      { label: "Careers", to: "/about", hash: "careers" },
+      { label: "Partners", to: "/about", hash: "partners" },
+      { label: "Our Presence", to: "/about", hash: "presence" },
+      { label: "Our Story", to: "/about", hash: "story" },
     ],
     featured: {
       category: "Core Values",
@@ -106,26 +107,26 @@ const MENU_CONTENT: Record<MenuType, MenuData> = {
   },
   resources: {
     title: "Resources",
-    description: "Helpful tools, templates, and guides for business growth and compliance.",
+    description: "Access corporate publications, financial reporting guidance, practical e-books, and curated external knowledge sources.",
     quickLinks: [
       { label: "View all resources", to: "/resources" },
       { label: "Help center", to: "/contact" },
     ],
     links: [
-      { label: "Brochures", to: "/resources/brochures" },
-      { label: "Guides and eBooks", to: "/resources/guides" },
-      { label: "IFRS/IAS", to: "/resources/ifrs/ias" },
-      { label: "Other Useful Links", to: "/resources/other" },
+      { label: "Brochures", to: "/resources", hash: "brochure" },
+      { label: "IFRS / IAS", to: "/resources", hash: "ifrs" },
+      { label: "Guides & eBooks", to: "/resources", hash: "guides" },
+      { label: "Other Useful Links", to: "/resources", hash: "links" },
     ],
     featured: {
-      category: "Latest Resource",
-      title: "SME Growth Playbook 2026",
-      description: "A comprehensive guide to scaling your operations and managing cash flow.",
-      image: resources, 
-      to: "/resources/playbook",
+      category: "Corporate Brochure",
+      title: "Discover MGS",
+      description: "Explore our corporate brochure to learn more about our capabilities and global vision.",
+      image: resources,
+      to: "/resources",
     },
   },
-}
+};
 
 const menuItems = [
   { to: "/services", label: "What we do", type: "services" as MenuType | null },
@@ -143,9 +144,13 @@ interface SearchItem {
 }
 
 const PAGES_TO_SEARCH: SearchItem[] = [
-  { title: "Who we are / About Us", description: "Our story, mission, vision, and core values.", to: "/about" },
+  { title: "Who we are / About Us", description: "Our story, mission, vision, values, and global presence.", to: "/about" },
+  { title: "Our Story", description: "Purpose-driven financial advisory built for modern finance.", to: "/about", hash: "story" },
+  { title: "Vision & Mission", description: "Our goal to deliver world-class financial advisory.", to: "/about", hash: "vision-mission" },
+  { title: "Core Values", description: "Five principles that shape every client engagement.", to: "/about", hash: "core-values" },
+  { title: "Careers", description: "Build your career. Grow and shape what's next with MGS.", to: "/about", hash: "careers" },
+  { title: "Our Presence", description: "Rooted in Sri Lanka. Expanding globally across key international markets.", to: "/about", hash: "presence" },
   { title: "Meet the Team", description: "Our senior advisors and global consultants.", to: "/about", hash: "team" },
-  { title: "Vision & Mission", description: "Our goal to deliver world-class financial advisory.", to: "/about" },
   { title: "Contact Us", description: "Get in touch for accounting, tax, or CFO support.", to: "/contact" },
   { title: "Request a Consultation", description: "Inquire about our professional advisory services.", to: "/contact" },
   { title: "What We Do / Services Overview", description: "Integrated financial, tax and strategic consulting.", to: "/services" },
@@ -245,6 +250,20 @@ export function Navbar() {
   };
 
   const solid = scrolled || open || activeMenu !== null;
+
+  const handleNavLinkClick = (to: string, hash?: string) => {
+    setActiveMenu(null);
+    setOpen(false);
+    if (hash) {
+      const currentPath = window.location.pathname;
+      if (currentPath === to || (to === "/about" && (currentPath === "/about" || currentPath === "/about/"))) {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -415,7 +434,7 @@ export function Navbar() {
                       key={sub.label}
                       to={sub.to}
                       hash={sub.hash}
-                      onClick={() => setActiveMenu(null)}
+                      onClick={() => handleNavLinkClick(sub.to, sub.hash)}
                       // Changed text-xs to text-sm to increase font size
                       className="group flex items-center justify-between rounded-lg p-2.5 transition-colors hover:bg-[#F5F7FA] text-sm font-semibold text-navy"
                     >
@@ -486,10 +505,7 @@ export function Navbar() {
                               <Link
                                 to={subLink.to}
                                 hash={subLink.hash}
-                                onClick={() => {
-                                  setOpen(false);
-                                  setActiveMobileSub(null);
-                                }}
+                                onClick={() => handleNavLinkClick(subLink.to, subLink.hash)}
                                 className="block rounded-md px-3 py-2 text-xs text-white/70 hover:bg-white/5 hover:text-white"
                               >
                                 {subLink.label}
@@ -578,6 +594,8 @@ export function Navbar() {
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {[
+                    { label: "Our Presence", to: "/about", hash: "presence" },
+                    { label: "Core Values", to: "/about", hash: "core-values" },
                     { label: "Virtual CFO Advisory", to: "/services/virtual-cfo" },
                     { label: "Tax Structuring", to: "/services/taxation-compliance" },
                     { label: "Meet the Team", to: "/about", hash: "team" },
@@ -588,7 +606,10 @@ export function Navbar() {
                       key={s.label}
                       to={s.to}
                       hash={s.hash}
-                      onClick={() => { setSearchOpen(false); }}
+                      onClick={() => {
+                        setSearchOpen(false);
+                        handleNavLinkClick(s.to, s.hash);
+                      }}
                       className="rounded-full bg-slate-50 border border-navy/5 px-3 py-1.5 text-xs font-semibold text-navy hover:bg-navy hover:text-white hover:border-navy transition-all duration-200"
                     >
                       {s.label}
@@ -641,7 +662,11 @@ export function Navbar() {
                               key={p.title}
                               to={p.to}
                               hash={p.hash}
-                              onClick={() => { setSearchOpen(false); setSearchQuery(""); }}
+                              onClick={() => {
+                                setSearchOpen(false);
+                                setSearchQuery("");
+                                handleNavLinkClick(p.to, p.hash);
+                              }}
                               className="block rounded-lg p-2 hover:bg-slate-50 transition-colors"
                             >
                               <div className="text-xs font-bold text-navy">{p.title}</div>

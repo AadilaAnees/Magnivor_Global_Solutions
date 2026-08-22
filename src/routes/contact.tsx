@@ -83,7 +83,7 @@ function ContactPage() {
               Talk to an advisor
             </h2>
             <p className="mt-3 text-muted-foreground">
-              Senior team responses within one business day.
+              Team responses within one business day.
             </p>
 
             <ul className="mt-8 space-y-5">

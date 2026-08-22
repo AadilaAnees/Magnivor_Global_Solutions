@@ -64,9 +64,13 @@ export function Footer() {
             </h4>
             <ul className="mt-4 space-y-2 text-[13px]">
               <li><Link to="/about" className="text-white/70 hover:text-white">About MGS</Link></li>
-              <li><Link to="/leadership" className="text-white/70 hover:text-white">Our Leadership</Link></li>
-              <li><Link to="/approach" className="text-white/70 hover:text-white">Our Approach</Link></li>
-              <li><Link to="/values" className="text-white/70 hover:text-white">Our Values</Link></li>
+              <li><Link to="/about" hash="story" className="text-white/70 hover:text-white">Our Story</Link></li>
+              <li><Link to="/about" hash="vision-mission" className="text-white/70 hover:text-white">Vision &amp; Mission</Link></li>
+              <li><Link to="/about" hash="core-values" className="text-white/70 hover:text-white">Core Values</Link></li>
+              <li><Link to="/about" hash="careers" className="text-white/70 hover:text-white">Careers</Link></li>
+              <li><Link to="/about" hash="partners" className="text-white/70 hover:text-white">Partners</Link></li>
+              <li><Link to="/about" hash="presence" className="text-white/70 hover:text-white">Our Presence</Link></li>
+              <li><Link to="/about" hash="team" className="text-white/70 hover:text-white">Meet the Team</Link></li>
             </ul>
           </div>
 
@@ -90,11 +94,10 @@ export function Footer() {
               Resources
             </h4>
             <ul className="mt-4 space-y-2 text-[13px]">
-              <li><Link to="/brochures" className="text-white/70 hover:text-white">Brochures</Link></li>
-              <li><Link to="/guides" className="text-white/70 hover:text-white">Guides & eBooks</Link></li>
-              <li><Link to="/ifrs" className="text-white/70 hover:text-white">IFRS/IAS</Link></li>
-              <li><Link to="/links" className="text-white/70 hover:text-white">Other Useful Links</Link></li>
-              <li><Link to="/faqs" className="text-white/70 hover:text-white">FAQs</Link></li>
+              <li><Link to="/resources" hash="brochure" className="text-white/70 hover:text-white">Brochures</Link></li>
+              <li><Link to="/resources" hash="ifrs" className="text-white/70 hover:text-white">IFRS/IAS</Link></li>
+              <li><Link to="/resources" hash="guides" className="text-white/70 hover:text-white">Guides &amp; eBooks</Link></li>
+              <li><Link to="/resources" hash="links" className="text-white/70 hover:text-white">Other Useful Links</Link></li>
             </ul>
           </div>
 

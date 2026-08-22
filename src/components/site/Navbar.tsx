@@ -49,7 +49,7 @@ const MENU_CONTENT: Record<MenuType, MenuData> = {
       { label: "Outsourcing", to: "/services/bpo-services" },
       { label: "Advisory", to: "/services/corporate-training" },
       { label: "Risk & Governance", to: "/services/economic-intelligence" },
-      
+
     ],
     featured: {
       category: "Featured Service",
@@ -91,11 +91,11 @@ const MENU_CONTENT: Record<MenuType, MenuData> = {
       { label: "Subscribe to Briefs", to: "/insights" },
     ],
     links: [
-      { label: "Economic Trends", to: "/insights" },
-      { label: "Tax Updates", to: "/insights" },
-      { label: "Financial Strategy", to: "/insights" },
-      { label: "Corporate Governance", to: "/insights" },
-      { label: "Business Intelligence", to: "/insights" },
+      { label: "Articles", to: "/insights" },
+      { label: "News & Updates", to: "/insights" },
+      { label: "Media Mentions", to: "/insights" },
+      { label: "Case Studies", to: "/insights" },
+      { label: "Events", to: "/insights" },
     ],
     featured: {
       category: "Featured Insight",
@@ -177,30 +177,30 @@ export function Navbar() {
 
   // Search logic filtering
   const query = searchQuery.trim().toLowerCase();
-  
+
   const filteredServices = query
     ? SERVICES.filter(
-        (s) =>
-          s.title.toLowerCase().includes(query) ||
-          s.short.toLowerCase().includes(query) ||
-          s.overview.toLowerCase().includes(query)
-      )
+      (s) =>
+        s.title.toLowerCase().includes(query) ||
+        s.short.toLowerCase().includes(query) ||
+        s.overview.toLowerCase().includes(query)
+    )
     : [];
 
   const filteredPages = query
     ? PAGES_TO_SEARCH.filter(
-        (p) =>
-          p.title.toLowerCase().includes(query) ||
-          p.description.toLowerCase().includes(query)
-      )
+      (p) =>
+        p.title.toLowerCase().includes(query) ||
+        p.description.toLowerCase().includes(query)
+    )
     : [];
 
   const filteredInsights = query
     ? INSIGHTS_TO_SEARCH.filter(
-        (i) =>
-          i.title.toLowerCase().includes(query) ||
-          i.description.toLowerCase().includes(query)
-      )
+      (i) =>
+        i.title.toLowerCase().includes(query) ||
+        i.description.toLowerCase().includes(query)
+    )
     : [];
 
   useEffect(() => {
@@ -218,7 +218,7 @@ export function Navbar() {
         setSearchOpen(false);
       }
     };
-    
+
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (!target.closest(".mega-menu-trigger") && !target.closest(".mega-menu-panel")) {
@@ -269,17 +269,15 @@ export function Navbar() {
     <>
       {/* Background dimmer overlay when mega menu is open */}
       <div
-        className={`fixed inset-0 bg-navy/20 backdrop-blur-[2px] transition-opacity duration-300 z-30 pointer-events-none ${
-          activeMenu ? "opacity-100" : "opacity-0"
-        }`}
+        className={`fixed inset-0 bg-navy/20 backdrop-blur-[2px] transition-opacity duration-300 z-30 pointer-events-none ${activeMenu ? "opacity-100" : "opacity-0"
+          }`}
       />
 
       <header
-        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 flex flex-col ${
-          solid
-            ? "bg-navy shadow-soft"
-            : "bg-transparent"
-        }`}
+        className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 flex flex-col ${solid
+          ? "bg-navy shadow-soft"
+          : "bg-transparent"
+          }`}
       >
         {/* Top Contact Strip (Desktop Only) */}
         <div className="hidden w-full items-center justify-between bg-[#020B18] px-6 py-1.5 text-[11px] text-white/80 lg:flex lg:px-10 border-b border-white/10">
@@ -313,7 +311,7 @@ export function Navbar() {
             <Logo variant="light" />
           </div>
 
-          
+
           {/* Desktop Nav Links */}
           <ul className="hidden items-center gap-7 lg:flex">
             {menuItems.map((item) => {
@@ -326,17 +324,15 @@ export function Navbar() {
                     onMouseLeave={handleMouseLeave}
                   >
                     <button
-                      className={`flex items-center gap-1 text-sm font-medium transition cursor-pointer ${
-                        activeMenu === item.type
-                          ? "text-gold"
-                          : "text-white/80 hover:text-white"
-                      }`}
+                      className={`flex items-center gap-1 text-sm font-medium transition cursor-pointer ${activeMenu === item.type
+                        ? "text-gold"
+                        : "text-white/80 hover:text-white"
+                        }`}
                     >
                       {item.label}
                       <ChevronDown
-                        className={`h-3.5 w-3.5 transition-transform duration-300 ${
-                          activeMenu === item.type ? "rotate-180" : ""
-                        }`}
+                        className={`h-3.5 w-3.5 transition-transform duration-300 ${activeMenu === item.type ? "rotate-180" : ""
+                          }`}
                       />
                     </button>
                   </li>
@@ -397,7 +393,7 @@ export function Navbar() {
           >
             {/* Changed max-w-7xl to max-w-5xl to reduce overall width */}
             <div className="mx-auto max-w-5xl grid grid-cols-12 overflow-hidden rounded-xl bg-white shadow-elegant border border-navy/10 transition-all duration-300">
-              
+
               {/* Left Sidebar (25% / 3 cols) */}
               <div className="col-span-3 bg-[#F5F7FA] p-8 flex flex-col justify-between border-r border-navy/5">
                 <div>
@@ -493,9 +489,8 @@ export function Navbar() {
                       >
                         <span>{item.label}</span>
                         <ChevronDown
-                          className={`h-4 w-4 transition-transform duration-300 ${
-                            subOpen ? "rotate-180" : ""
-                          }`}
+                          className={`h-4 w-4 transition-transform duration-300 ${subOpen ? "rotate-180" : ""
+                            }`}
                         />
                       </button>
                       {subOpen && (

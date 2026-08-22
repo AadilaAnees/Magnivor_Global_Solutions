@@ -40,11 +40,11 @@ export const Route = createFileRoute("/insights")({
 
 const CATEGORIES = [
   "All",
-  "Economic Trends",
-  "Taxation Updates",
-  "Financial Strategy",
-  "Corporate Governance",
-  "Business Intelligence",
+  "Articles",
+  "News & Updates",
+  "Media Mentions",
+  "Case Studies",
+  "Events",
   "Other",
 ] as const;
 

@@ -1,15 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  FileText,
-  BookOpen,
-  Globe2,
   Download,
   ArrowRight,
-  Scale,
   Clock,
   ExternalLink,
   Building2,
+  Scale,
   Landmark,
 } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
@@ -36,10 +33,10 @@ export const Route = createFileRoute("/resources")({
 });
 
 const RESOURCE_SECTIONS = [
-  { id: "brochure", label: "Brochure", icon: FileText },
-  { id: "ifrs", label: "IFRS / IAS", icon: Scale },
-  { id: "guides", label: "Guides & E-books", icon: BookOpen },
-  { id: "links", label: "Useful Links", icon: Globe2 },
+  { id: "brochure", label: "Brochure" },
+  { id: "ifrs", label: "IFRS / IAS" },
+  { id: "guides", label: "Guides & E-books" },
+  { id: "links", label: "Other Useful Links" },
 ] as const;
 
 function ResourcesPage() {
@@ -88,45 +85,47 @@ function ResourcesPage() {
         description="Access our corporate publications, practical reporting guidance, technical e-books, and curated external regulatory sources."
       />
 
-      {/* Non-Sticky Filter Navigation Bar */}
-      <div className="border-b border-slate-200/80 bg-white">
+      <div className="bg-white text-navy min-h-[450px] pt-8 md:pt-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="flex items-center gap-2 overflow-x-auto py-4 no-scrollbar">
+          {/* Category Filter Pills (Styled identically to Insights section) */}
+          <div className="flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => selectTab("all")}
-              className={`shrink-0 rounded-full px-5 py-2 text-xs font-semibold transition cursor-pointer ${
+              className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition cursor-pointer ${
                 activeTab === "all"
-                  ? "bg-navy text-white shadow-soft"
-                  : "bg-slate-100 text-navy/70 hover:bg-slate-200/80 hover:text-navy"
+                  ? "border-emerald bg-emerald text-white shadow-soft"
+                  : "border-border bg-white/70 text-navy/75 backdrop-blur hover:border-emerald/40 hover:text-emerald"
               }`}
             >
-              All Resources
+              All
             </button>
             {RESOURCE_SECTIONS.map((sec) => {
-              const Icon = sec.icon;
               const isActive = activeTab === sec.id;
               return (
                 <button
                   key={sec.id}
                   type="button"
                   onClick={() => selectTab(sec.id)}
-                  className={`inline-flex shrink-0 items-center gap-1.5 rounded-full px-5 py-2 text-xs font-semibold transition cursor-pointer ${
+                  className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition cursor-pointer ${
                     isActive
-                      ? "bg-navy text-white shadow-soft"
-                      : "bg-slate-100 text-navy/70 hover:bg-slate-200/80 hover:text-navy"
+                      ? "border-emerald bg-emerald text-white shadow-soft"
+                      : "border-border bg-white/70 text-navy/75 backdrop-blur hover:border-emerald/40 hover:text-emerald"
                   }`}
                 >
-                  <Icon className="h-3.5 w-3.5" />
-                  <span>{sec.label}</span>
+                  {sec.label}
                 </button>
               );
             })}
           </div>
-        </div>
-      </div>
 
-      <div className="bg-white text-navy min-h-[450px]">
+          <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            {activeTab !== "all"
+              ? `Resource: ${RESOURCE_SECTIONS.find((s) => s.id === activeTab)?.label ?? activeTab}`
+              : "All Resources"}
+          </p>
+        </div>
+
         {/* ========================================================================= */}
         {/* 1. BROCHURE SECTION */}
         {/* ========================================================================= */}

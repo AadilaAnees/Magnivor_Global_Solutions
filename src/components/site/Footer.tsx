@@ -80,11 +80,11 @@ export function Footer() {
               Insights & Media
             </h4>
             <ul className="mt-4 space-y-2 text-[13px]">
-              <li><Link to="/articles" className="text-white/70 hover:text-white">Articles</Link></li>
-              <li><Link to="/news" className="text-white/70 hover:text-white">News & Updates</Link></li>
-              <li><Link to="/mentions" className="text-white/70 hover:text-white">Media Mentions</Link></li>
-              <li><Link to="/case-studies" className="text-white/70 hover:text-white">Case Studies</Link></li>
-              <li><Link to="/events" className="text-white/70 hover:text-white">Events</Link></li>
+              <li><Link to="/insights" search={{ category: "Articles" }} className="text-white/70 hover:text-white">Articles</Link></li>
+              <li><Link to="/insights" search={{ category: "News & Updates" }} className="text-white/70 hover:text-white">News & Updates</Link></li>
+              <li><Link to="/insights" search={{ category: "Media Mentions" }} className="text-white/70 hover:text-white">Media Mentions</Link></li>
+              <li><Link to="/insights" search={{ category: "Case Studies" }} className="text-white/70 hover:text-white">Case Studies</Link></li>
+              <li><Link to="/insights" search={{ category: "Events" }} className="text-white/70 hover:text-white">Events</Link></li>
             </ul>
           </div>
 

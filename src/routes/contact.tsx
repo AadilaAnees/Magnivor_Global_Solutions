@@ -132,10 +132,7 @@ function ContactPage() {
 
             {/* WhatsApp callout */}
             <div className="mt-10 rounded-2xl border border-emerald/20 bg-emerald/5 p-7">
-              <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-emerald">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald" /> Instant Response Enabled
-              </span>
-              <h3 className="mt-3 text-xl font-bold text-white">Prefer instant response?</h3>
+              <h3 className="text-xl font-bold text-white">Prefer instant response?</h3>
               <p className="mt-2 text-sm text-foreground/80">
                 Connect instantly with our advisory team via WhatsApp for faster consultation support.
               </p>
@@ -186,13 +183,12 @@ function ContactPage() {
                     Message<span className="text-emerald"> *</span>
                   </label>
                   <span
-                    className={`text-[11px] font-medium tabular-nums ${
-                      remaining <= 0
-                        ? "text-red-600"
-                        : remaining <= 40
-                          ? "text-amber-600"
-                          : "text-muted-foreground"
-                    }`}
+                    className={`text-[11px] font-medium tabular-nums ${remaining <= 0
+                      ? "text-red-600"
+                      : remaining <= 40
+                        ? "text-amber-600"
+                        : "text-muted-foreground"
+                      }`}
                     aria-live="polite"
                   >
                     {remaining} / {MESSAGE_MAX} characters left
